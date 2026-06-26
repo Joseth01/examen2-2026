@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class MaterialController extends Controller
 {
@@ -44,4 +45,30 @@ class MaterialController extends Controller
             'material' => $resultado['material'],
         ], 201);
     }
+
+     public function update(Request $request, int $codigo): JsonResponse
+    {
+        $material = Material::find($codigo);
+
+        if (!$material) {
+            return response()->json([
+                'message' => 'Material no encontrado.',
+            ], 404);
+        }
+
+        $validated = $request->validate([
+            'unidadMedida'  => 'sometimes|required|string|max:255',
+            'descripcion'   => 'sometimes|required|string|max:500',
+            'ubicacion'     => 'sometimes|required|string|max:255',
+            'idCategoria'   => 'sometimes|required|integer|exists:categorias,idCategoria',
+        ]);
+
+        $material->update($validated);
+
+        return response()->json([
+            'message'  => 'Material actualizado correctamente.',
+            'material' => $material->load('categoria'),
+        ], 200);
+    }
 }
+

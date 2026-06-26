@@ -8,3 +8,6 @@ Route::middleware(['auth:sanctum', 'throttle:openai'])
     ->post('/realtime/sessions', [RealtimeSessionController::class, 'store']);
 
     Route::post('/materiales', [MaterialController::class, 'store']);
+
+    Route::put('/materiales/{codigo}', [MaterialController::class, 'update']);
+    
