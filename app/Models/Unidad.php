@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\MaterialUnidad;
 
 class Unidad extends Model
 {
@@ -19,10 +20,10 @@ class Unidad extends Model
         return $this->hasMany(MaterialUnidad::class, 'idUnidad', 'idUnidad');
     }
 
-    public function usuarios()
-    {
-        return $this->hasMany(Usuario::class, 'idUnidad', 'idUnidad');
-    }
+    //public function usuarios()
+   // {
+       // return $this->hasMany(Usuario::class, 'idUnidad', 'idUnidad');
+   // }
 
     public function presupuestos()
     {
