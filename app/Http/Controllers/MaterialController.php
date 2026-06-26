@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Material;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
 
 class MaterialController extends Controller
 {
+    public function index(): JsonResponse
+    {
+        $materiales = Material::with('categoria')->get();
+
+        return response()->json($materiales);
+    }
+
     public function store(Request $request)
     {
         $datosValidados = $request->validate([
