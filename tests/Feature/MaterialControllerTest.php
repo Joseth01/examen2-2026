@@ -3,12 +3,14 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class MaterialControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    #[Test]
     public function dadoUnMaterialQueNoExiste_insertarMaterial_funcionaCorrectamente(): void
     {
         $datosMaterial = [
