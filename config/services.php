@@ -13,7 +13,7 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-
+    
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],
@@ -33,6 +33,13 @@ return [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+    ],
+
+    'openai' => [
+        'key'     => env('OPENAI_API_KEY'),
+        'url'     => env('OPENAI_URL', 'https://api.openai.com/v1/realtime/sessions'),
+        'model'   => env('OPENAI_MODEL', 'gpt-4o-realtime-preview-2025-06-04'),
+        'timeout' => (int) env('OPENAI_TIMEOUT', 10),
     ],
 
 ];
